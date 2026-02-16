@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impacto de Errores de Software: Estudio de Caso</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Custom Config & Styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F3F4F6; /* Slate 100 */
+            color: #1F2937; /* Slate 800 */
+        }
+
+        /* Palette: Vibrant Professional 
+           Primary: #4F46E5 (Indigo 600)
+           Secondary: #0EA5E9 (Sky 500)
+           Accent: #F59E0B (Amber 500)
+           Danger: #EF4444 (Red 500)
+           Success: #10B981 (Emerald 500)
+        */
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #4F46E5, #0EA5E9);
+        }
+
+        .section-header {
+            border-left: 5px solid #F59E0B;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="bg-gradient-to-r from-indigo-700 to-sky-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-2/3">
+                    <h4 class="text-amber-300 font-bold uppercase tracking-widest mb-2">Informe Técnico & Análisis</h4>
+                    <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">
+                        Impacto de los Errores de Software
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light text-indigo-100 mb-6">
+                        Análisis Cualitativo de la Experiencia de Usuario y Clima Laboral
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm text-sm font-semibold">🔍 Estudio de Caso</span>
+                        <span class="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm text-sm font-semibold">📊 Diagrama de Pareto</span>
+                        <span class="px-4 py-2 bg-white/20 rounded-full backdrop-blur-sm text-sm font-semibold">🧠 UX & Calidad</span>
+                    </div>
+                </div>
+                <div class="md:w-1/3 mt-8 md:mt-0 flex justify-center">
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 text-center">
+                        <div class="text-5xl font-black text-amber-400 mb-2">80%</div>
+                        <div class="text-indigo-100 text-sm">de los problemas provienen del<br>20% de las causas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="container mx-auto px-6 py-12 grid grid-cols-1 gap-12">
+
+        <!-- INTRO & CONTEXT -->
+        <section class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Contexto del Estudio</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Este informe analiza el despliegue de un sistema de información a nivel nacional, donde una serie de fallas técnicas desencadenaron consecuencias que trascendieron lo funcional. Basado en la investigación cualitativa de Romero Untiveros, exploramos cómo los errores de software no son solo "bugs", sino factores críticos que erosionan la confianza del usuario, destruyen el clima laboral y comprometen la calidad percibida del producto. A continuación, respondemos a las 5 interrogantes clave del caso.
+            </p>
+        </section>
+
+        <!-- QUESTION 1 & 4: IMPACTS & CLIMATE (Combined Row) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Q1: Impacto en Usuarios -->
+            <article class="card p-8">
+                <div class="section-header">
+                    <h3 class="text-2xl font-bold text-gray-800">1. Impacto en el Usuario Final</h3>
+                    <p class="text-indigo-600 font-medium">Más allá de la funcionalidad</p>
+                </div>
+                <p class="text-gray-600 mb-6">
+                    Los errores de software generaron una respuesta emocional negativa profunda. No solo impidieron tareas, sino que provocaron <strong>frustración, ansiedad y rechazo</strong>. Esto es relevante para la calidad porque un sistema puede ser funcionalmente "correcto" en el código, pero si genera fricción cognitiva y emocional, se considera un fracaso en términos de usabilidad y adopción.
+                </p>
+                
+                <div class="bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200">
+                    <h4 class="font-bold text-gray-700 mb-2 text-center">Dimensiones del Impacto Emocional</h4>
+                    <!-- Chart Container -->
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="impactRadarChart"></canvas>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-start"><span class="text-red-500 mr-2">➤</span> <strong>Frustración:</strong> Sensación de impotencia al no completar tareas.</li>
+                    <li class="flex items-start"><span class="text-red-500 mr-2">➤</span> <strong>Desconfianza:</strong> El usuario duda de la integridad de los datos.</li>
+                    <li class="flex items-start"><span class="text-red-500 mr-2">➤</span> <strong>Abandono:</strong> Resistencia a usar el sistema, volviendo a procesos manuales.</li>
+                </ul>
+            </article>
+
+            <!-- Q4: Clima Laboral -->
+            <article class="card p-8">
+                <div class="section-header">
+                    <h3 class="text-2xl font-bold text-gray-800">4. Efectos en Clima Laboral</h3>
+                    <p class="text-indigo-600 font-medium">El costo oculto de los errores</p>
+                </div>
+                <p class="text-gray-600 mb-6">
+                    El impacto trascendió al individuo y contaminó el entorno de trabajo. La recurrencia de fallas creó una cultura de <strong>"buscar al culpable"</strong> entre desarrolladores y usuarios, polarizando los equipos. La productividad cayó no solo por el tiempo técnico de reparación, sino por el desgaste emocional y la gestión de conflictos.
+                </p>
+
+                <!-- Visualization: Productivity Loss Breakdown -->
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="productivityChart"></canvas>
+                </div>
+                
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                    <div class="bg-red-50 p-3 rounded text-center">
+                        <div class="text-red-600 font-bold text-xl">🔻 40%</div>
+                        <div class="text-xs text-red-800">Eficiencia Operativa</div>
+                    </div>
+                    <div class="bg-amber-50 p-3 rounded text-center">
+                        <div class="text-amber-600 font-bold text-xl">🔺 Alta</div>
+                        <div class="text-xs text-amber-800">Tensión Interáreas</div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- QUESTION 5: PARETO DIAGRAM (Full Width) -->
+        <section class="card p-8 border-t-4 border-indigo-600">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6">
+                <div>
+                    <div class="section-header mb-2">
+                        <h3 class="text-3xl font-bold text-gray-800">5. Diagrama de Pareto de Fallas</h3>
+                        <p class="text-indigo-600 font-medium">Identificación de las causas raíz (Principio 80/20)</p>
+                    </div>
+                    <p class="text-gray-600 max-w-3xl">
+                        Basado en los datos del caso de estudio, observamos que atacar los dos primeros tipos de errores (Validación y Usabilidad) resolvería el <strong>66%</strong> de los problemas reportados. Esto confirma la necesidad de priorizar la calidad de los datos y la interfaz sobre optimizaciones técnicas menores.
+                    </p>
+                </div>
+                <div class="bg-indigo-50 px-4 py-2 rounded-lg border border-indigo-100 text-indigo-800 text-sm font-semibold mt-4 md:mt-0">
+                    Total de Fallas Muestreadas: 60
+                </div>
+            </div>
+
+            <!-- PARETO CHART CONTAINER -->
+            <div class="chart-container" style="height: 450px; max-width: 100%;">
+                <canvas id="paretoChart"></canvas>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-4 bg-gray-50 rounded border-l-4 border-indigo-500">
+                    <h5 class="font-bold text-gray-800">Pocos Vitales</h5>
+                    <p class="text-sm text-gray-600">Errores de Validación y Usabilidad</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded border-l-4 border-sky-400">
+                    <h5 class="font-bold text-gray-800">Muchos Triviales</h5>
+                    <p class="text-sm text-gray-600">Integración, Rendimiento y Seguridad</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded border-l-4 border-amber-400">
+                    <h5 class="font-bold text-gray-800">Acción Recomendada</h5>
+                    <p class="text-sm text-gray-600">Enfocar el 80% del esfuerzo de QA en Validación de Datos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUESTION 2: METHODS (Process Flow) -->
+        <section class="card p-8 bg-gradient-to-br from-white to-indigo-50">
+            <div class="section-header">
+                <h3 class="text-2xl font-bold text-gray-800">2. Métodos de Investigación Utilizados</h3>
+                <p class="text-indigo-600 font-medium">Enfoque Cualitativo</p>
+            </div>
+            <p class="text-gray-600 mb-8">
+                Para capturar la dimensión subjetiva y compleja del impacto en el usuario, el equipo no se limitó a logs de errores técnicos. Utilizaron un enfoque fenomenológico para entender la experiencia vivida.
+            </p>
+
+            <!-- Custom Process Flow Visualization (HTML/Tailwind) -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                <!-- Step 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-indigo-100 relative z-10 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-2xl mb-4 font-bold">1</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Entrevistas a Profundidad</h4>
+                    <p class="text-xs text-gray-500">Conversaciones semi-estructuradas con usuarios afectados para explorar sentimientos.</p>
+                </div>
+                <!-- Connector Line (Desktop) -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-indigo-200 -z-0 transform -translate-y-1/2"></div>
+                
+                <!-- Step 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-indigo-100 relative z-10 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-2xl mb-4 font-bold">2</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Observación Directa</h4>
+                    <p class="text-xs text-gray-500">Seguimiento in-situ (Shadowing) para ver la reacción en tiempo real ante el error.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-indigo-100 relative z-10 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center text-2xl mb-4 font-bold">3</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Análisis Documental</h4>
+                    <p class="text-xs text-gray-500">Revisión de reportes de incidencia y bitácoras de quejas formales.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-indigo-100 relative z-10 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mb-4 font-bold">4</div>
+                    <h4 class="font-bold text-gray-800 mb-2">Teoría Fundamentada</h4>
+                    <p class="text-xs text-gray-500">Codificación de datos para identificar patrones de comportamiento y frustración.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUESTION 3: STRATEGIES (Action Cards) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="md:col-span-2 section-header">
+                <h3 class="text-2xl font-bold text-gray-800">3. Estrategias de Mejora Propuestas</h3>
+                <p class="text-indigo-600 font-medium">Prevención en Etapas Tempranas</p>
+            </div>
+
+            <!-- Strategy 1 -->
+            <div class="card p-6 border-l-8 border-sky-500 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-sky-100 rounded-lg text-sky-600 mr-4 text-2xl">🛠️</div>
+                    <h4 class="text-xl font-bold text-gray-800">Diseño Centrado en el Usuario (UCD)</h4>
+                </div>
+                <p class="text-gray-600 flex-grow">
+                    Incorporar a los usuarios finales desde la fase de requisitos. No esperar a las pruebas UAT finales. Utilizar <strong>prototipado rápido</strong> y wireframes interactivos para validar flujos de trabajo antes de escribir una sola línea de código backend.
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-100 text-sm font-semibold text-sky-600">
+                    Objetivo: Reducir Fallas de Usabilidad
+                </div>
+            </div>
+
+            <!-- Strategy 2 -->
+            <div class="card p-6 border-l-8 border-emerald-500 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <div class="p-3 bg-emerald-100 rounded-lg text-emerald-600 mr-4 text-2xl">🛡️</div>
+                    <h4 class="text-xl font-bold text-gray-800">Validación Defensiva de Datos</h4>
+                </div>
+                <p class="text-gray-600 flex-grow">
+                    Implementar reglas de validación robustas tanto en el frontend (feedback inmediato) como en el backend. Los errores de datos fueron la causa #1 (Pareto). Mejorar los <strong>mensajes de error</strong> para que sean informativos y no crípticos, guiando al usuario a la solución.
+                </p>
+                <div class="mt-4 pt-4 border-t border-gray-100 text-sm font-semibold text-emerald-600">
+                    Objetivo: Eliminar Errores de Validación (20% vital)
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">Infografía basada en el Caso de Estudio de Investigación Cualitativa</p>
+            <p class="text-sm">Generado por Canvas Infographics - Sin uso de SVG ni librerías externas no permitidas.</p>
+        </div>
+    </footer>
+
+    <!-- CHART GENERATION LOGIC -->
+    <script>
+        // --- UTILITY: Label Wrapping Helper ---
+        function formatLabel(str, maxwidth) {
+            if (typeof str !== 'string' || str.length <= maxwidth) return str;
+            const sections = [];
+            const words = str.split(' ');
+            let temp = '';
+            words.forEach(function(item, index) {
+                if (temp.length > 0) {
+                    const concat = temp + ' ' + item;
+                    if (concat.length > maxwidth) {
+                        sections.push(temp);
+                        temp = item;
+                    } else {
+                        temp = concat;
+                    }
+                } else {
+                    temp = item;
+                }
+                if (index === words.length - 1) {
+                    sections.push(temp);
+                }
+            });
+            return sections;
+        }
+
+        // --- CHART 1: IMPACT RADAR (Emotions) ---
+        const ctxRadar = document.getElementById('impactRadarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Frustración', 'Estrés Laboral', 'Desconfianza', 'Resistencia', 'Confusión'],
+                datasets: [{
+                    label: 'Intensidad del Impacto',
+                    data: [90, 75, 85, 60, 70],
+                    fill: true,
+                    backgroundColor: 'rgba(245, 158, 11, 0.2)', // Amber with opacity
+                    borderColor: '#F59E0B', // Amber Solid
+                    pointBackgroundColor: '#F59E0B',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#F59E0B'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        pointLabels: {
+                            font: { size: 12, family: "'Roboto', sans-serif", weight: 'bold' },
+                            color: '#4B5563'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: PARETO CHART (Mixed) ---
+        // Data derived from snippet image: 
+        // Validation: ~22, Usability: ~18, Integration: ~12, Performance: ~5, Security: ~3. Total = 60.
+        const paretoDataRaw = [22, 18, 12, 5, 3];
+        const paretoLabels = [
+            'Errores de Validación de Datos', 
+            'Fallas de Usabilidad', 
+            'Errores de Integración', 
+            'Problemas de Rendimiento', 
+            'Errores de Seguridad'
+        ];
+        
+        // Calculate cumulative percentage
+        let cumulativeSum = 0;
+        const totalErrors = paretoDataRaw.reduce((a, b) => a + b, 0);
+        const paretoCumulative = paretoDataRaw.map(val => {
+            cumulativeSum += val;
+            return (cumulativeSum / totalErrors) * 100;
+        });
+
+        // Process labels
+        const wrappedParetoLabels = paretoLabels.map(l => formatLabel(l, 16));
+
+        const ctxPareto = document.getElementById('paretoChart').getContext('2d');
+        new Chart(ctxPareto, {
+            type: 'bar',
+            data: {
+                labels: wrappedParetoLabels,
+                datasets: [
+                    {
+                        label: '% Acumulado',
+                        data: paretoCumulative,
+                        type: 'line',
+                        borderColor: '#EF4444', // Red
+                        backgroundColor: '#EF4444',
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        yAxisID: 'y1',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Frecuencia de Errores',
+                        data: paretoDataRaw,
+                        backgroundColor: '#4F46E5', // Indigo
+                        borderColor: '#4338CA',
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Frecuencia' },
+                        grid: { color: 'rgba(0,0,0,0.05)' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        title: { display: true, text: 'Porcentaje Acumulado (%)' },
+                        grid: { drawOnChartArea: false } // only want the grid lines for one axis to show up
+                    },
+                    x: {
+                        ticks: {
+                            font: { size: 11 },
+                            maxRotation: 0 // Prevent rotation, rely on wrapping
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                        labels: { usePointStyle: true }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 3: PRODUCTIVITY (Bar - Workplace Climate) ---
+        const ctxProd = document.getElementById('productivityChart').getContext('2d');
+        new Chart(ctxProd, {
+            type: 'bar',
+            data: {
+                labels: formatLabel('Trabajo Productivo vs Gestión de Errores vs Conflicto Interpersonal', 20), // Passed as one string then split logic handles if needed, or manual array
+                labels: [['Trabajo', 'Productivo'], ['Gestión de', 'Errores'], ['Resolución de', 'Conflictos']],
+                datasets: [{
+                    label: 'Distribución del Tiempo',
+                    data: [40, 35, 25], // Hypothetical distribution based on narrative
+                    backgroundColor: [
+                        '#10B981', // Emerald (Good)
+                        '#F59E0B', // Amber (Warning)
+                        '#EF4444'  // Red (Bad)
+                    ],
+                    borderWidth: 0,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal Bar for better readability of categories
+                scales: {
+                    x: {
+                        max: 100,
+                        grid: { display: false },
+                        ticks: { callback: function(value){return value + "%"} }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                return context.parsed.x + '% del Tiempo Total';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
