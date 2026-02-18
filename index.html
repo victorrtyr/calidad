@@ -79,9 +79,7 @@
                     <h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">
                         Impacto de los Errores de Software
                     </h1>
-                    <p class="text-xl md:text-2xl font-light text-indigo-100 mb-6">
-                        Análisis Cualitativo de la Experiencia de Usuario y Clima Laboral
-                    </p>
+               
                   
                 </div>
                 
@@ -107,7 +105,7 @@
             <article class="card p-8">
                 <div class="section-header">
                     <h3 class="text-2xl font-bold text-gray-800">1. Impacto en el Usuario Final</h3>
-                    <p class="text-indigo-600 font-medium">Más allá de la funcionalidad</p>
+                   
                 </div>
                 <p class="text-gray-600 mb-6">
                     Los errores de software generaron una respuesta emocional negativa profunda. No solo impidieron tareas, sino que provocaron <strong>frustración, ansiedad y rechazo</strong>. Esto es relevante para la calidad porque un sistema puede ser funcionalmente "correcto" en el código, pero si genera fricción cognitiva y emocional, se considera un fracaso en términos de usabilidad y adopción.
@@ -131,7 +129,7 @@
             <article class="card p-8">
                 <div class="section-header">
                     <h3 class="text-2xl font-bold text-gray-800">4. Efectos en Clima Laboral</h3>
-                    <p class="text-indigo-600 font-medium">El costo oculto de los errores</p>
+                 
                 </div>
                 <p class="text-gray-600 mb-6">
                     El impacto trascendió al individuo y contaminó el entorno de trabajo. La recurrencia de fallas creó una cultura de <strong>"buscar al culpable"</strong> entre desarrolladores y usuarios, polarizando los equipos. La productividad cayó no solo por el tiempo técnico de reparación, sino por el desgaste emocional y la gestión de conflictos.
@@ -160,15 +158,15 @@
             <div class="flex flex-col md:flex-row justify-between items-end mb-6">
                 <div>
                     <div class="section-header mb-2">
-                        <h3 class="text-3xl font-bold text-gray-800">5. Diagrama de Pareto de Fallas</h3>
-                        <p class="text-indigo-600 font-medium">Identificación de las causas raíz (Principio 80/20)</p>
+                        <h3 class="text-3xl font-bold text-gray-800">5. Diagrama de Pareto</h3>
+                      
                     </div>
                     <p class="text-gray-600 max-w-3xl">
                         Basado en los datos del caso de estudio, observamos que atacar los dos primeros tipos de errores (Validación y Usabilidad) resolvería el <strong>66%</strong> de los problemas reportados. Esto confirma la necesidad de priorizar la calidad de los datos y la interfaz sobre optimizaciones técnicas menores.
                     </p>
                 </div>
                 <div class="bg-indigo-50 px-4 py-2 rounded-lg border border-indigo-100 text-indigo-800 text-sm font-semibold mt-4 md:mt-0">
-                    Total de Fallas Muestreadas: 60
+                    Total de Fallas Muestreadas: 100
                 </div>
             </div>
 
@@ -241,7 +239,7 @@
         <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div class="md:col-span-2 section-header">
                 <h3 class="text-2xl font-bold text-gray-800">3. Estrategias de Mejora Propuestas</h3>
-                <p class="text-indigo-600 font-medium">Prevención en Etapas Tempranas</p>
+               
             </div>
 
             <!-- Strategy 1 -->
@@ -353,15 +351,20 @@
         });
 
         // --- CHART 2: PARETO CHART (Mixed) ---
-        // Data derived from snippet image: 
-        // Validation: ~22, Usability: ~18, Integration: ~12, Performance: ~5, Security: ~3. Total = 60.
-        const paretoDataRaw = [22, 18, 12, 5, 3];
+        // Datos actualizados desde la tabla proporcionada:
+        // 1) Errores de usabilidad: 35
+        // 2) Registro incorrecto de datos: 25
+        // 3) Falta de validación de información: 20
+        // 4) Errores de permisos o roles: 12
+        // 5) Fallas menores del sistema: 8
+        // Total = 100.
+        const paretoDataRaw = [35, 25, 20, 12, 8];
         const paretoLabels = [
-            'Errores de Validación de Datos', 
-            'Fallas de Usabilidad', 
-            'Errores de Integración', 
-            'Problemas de Rendimiento', 
-            'Errores de Seguridad'
+            'Errores de Usabilidad',
+            'Registro incorrecto de datos',
+            'Falta de validación de información',
+            'Errores de permisos o roles',
+            'Fallas menores del sistema'
         ];
         
         // Calculate cumulative percentage
